@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row"> {{!header row}}
+        <div class="col"> {{! Single column for header and burger input text box}}
+            <!-- Main header row -->
+            <div class="jumbotron jumbotron-fluid text-center bg-warning">
+                <img id="burger-img" src="https://media.giphy.com/media/JteZf56ZXsJl6/giphy.gif" alt="burger">
+                <h1>EAT DA BURGER!</h1>
+                <p class="lead">Hungry? Enter the name of a burger you'd like to devour!</p>
+                <form action="/burgers" method="POST">
+                    <input type="text" id="name" name="burger_name" placeholder="Yummiest Burger">
+                    <button type="submit" class="addBurgerButton">Add My Burger</button>
+                </form>
+            </div>
+        </div>
+    </div>{{!end of header row}}
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Ready to Devour?</h3>
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+            <h3>Devoured...mmmh!!!</h3>
+        </div>
+    </div>
+    <div class="row">{{!burger content row}}
+        <div class="col-sm-6">
+            {{#each burger_data}}
+            {{#unless this.devoured}}
+            <div class="card text-left available" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.id}}.{{this.burger_name}}</h5>
+
+                    <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
+                        <input type="hidden" name="burger_id" type="text" value={{this.id}}>
+                        <button type="submit" class="btn btn-primary devour">
+                            DEVOUR IT!
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {{/unless}}
+            {{/each}}
+        </div>
+        <div class="col-sm-2">
+
+        </div>
+        <div class="col-sm-4">
+            {{#each burger_data}}
+            {{#if this.devoured}}
+            <div class="card text-left devoured" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.id}}.{{this.burger_name}}</h5>
+                </div>
+            </div>
+            {{/if}}
+            {{/each}}
+        </div>{{!end of burger content row}}
+
+    </div>{{!end of all content container}}

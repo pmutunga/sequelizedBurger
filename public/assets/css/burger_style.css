@@ -1,0 +1,22 @@
+
+.available {
+    margin-bottom: 10px;
+    background-color: #b7ffc2;
+}
+
+.devour {
+    position: absolute;
+    bottom: 0;
+    right:0;
+}
+
+#burger-img {
+    width:100px;
+    height: 100px;
+    border-radius: 45%;
+}
+
+.devoured {
+    margin-bottom: 10px;
+    background-color: #ffd1c9;
+}
