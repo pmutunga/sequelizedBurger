@@ -5,6 +5,9 @@ var bodyParser = require('body-parser'); // included in Express
 var methodOverride = require('method-override');
 var exphbs = require('express-handlebars');
 
+// Requiring our models for syncing
+var db = require("./models");
+
 var app = express();
 var PORT = process.env.PORT || 3000;
 
@@ -27,14 +30,22 @@ app.use(methodOverride('_method'))
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-
+// Routes
+// =============================================================
+require("./controllers/burgers_controller.js")(app);
 
 // Import routes and give the server access to them.
-var routes = require("./controllers/burgers_controller");
+//var routes = require("./controllers/burgers_controller.js");
 
-app.use(routes);
+//app.use(routes);
 
-app.listen(PORT, function() {
-  console.log("App now listening at localhost:" + PORT);
+// Starts the server to begin listening
+// ===========================./controllers/burgers_controller==================================
+// require("../controllers/burgers_controller")(app);
+
+db.sequelize.sync().then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
 });
 

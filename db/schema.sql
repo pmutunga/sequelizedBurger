@@ -1,8 +1,8 @@
 -- Schema
 
-DROP DATABASE burgers_db;
-CREATE DATABASE burgers_db;
-USE burgers_db;
+DROP DATABASE IF EXISTS sequelizedburger_db;
+CREATE DATABASE sequelizedburger_db;
+USE sequelizedburger_db_db;
 
 CREATE TABLE burgers
 (
